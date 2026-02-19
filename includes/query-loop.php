@@ -244,7 +244,8 @@ function get_include_ids( $include_posts ) {
 \add_filter(
 	'pre_render_block',
 	function ( $pre_render, $parsed_block ) {
-		if ( isset( $parsed_block['attrs']['namespace'] ) && 'contextual-query-loop' === $parsed_block['attrs']['namespace'] ) {
+		// if ( isset( $parsed_block['attrs']['namespace'] ) && 'contextual-query-loop' === $parsed_block['attrs']['namespace'] ) {
+		if ( isset( $parsed_block['attrs']['query'] ) ) {
 
 			// Hijack the global query. It's a hack, but it works.
 			if ( isset( $parsed_block['attrs']['query']['inherit'] ) && true === $parsed_block['attrs']['query']['inherit'] ) {

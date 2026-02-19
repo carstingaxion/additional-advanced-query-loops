@@ -1,12 +1,12 @@
 <?php
 /**
  * Plugin Name:       Contextual Query Loop
- * Description:       Query loop block-variation to create custom queries based on the post- or template-context.
- * Plugin URI:        https://github.com/figuren-theater/contextual-query-loop
- * Version:           2.2.3
+ * Description:       Query loop block-extension to create custom queries based on the post- or template-context.
+ * Plugin URI:        https://github.com/carstingaxion/contextual-query-loop
+ * Version:           0.2.0
  * Requires at least: 6.1
  * Requires PHP:      7.2
- * Author:            Ryan Welcher, Carsten Bach
+ * Author:            Carsten Bach
  * Author URI:        
  * License:           GPL v2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html

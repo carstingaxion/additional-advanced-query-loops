@@ -24,50 +24,42 @@ export const ContextAuthorControls = ( { attributes, setAttributes, context } ) 
 	} = {} } = attributes;
 
 	const onContextualAuthorChange = ( value ) => {
-		if ( attributes.query.querycontext && attributes.query.querycontext.author && 1 === value ) {
-			delete attributes.query.querycontext.author;
+		const currentQueryContext = attributes.query?.querycontext || {};
+		const newQueryContext = { ...currentQueryContext };
 
-			setAttributes( {
-				query: {
-					...attributes.query,
-					querycontext: { ...attributes.query.querycontext }
-				}
-			} );
-			return;
+		if ( newQueryContext.author && value === 1 ) {
+			delete newQueryContext.author;
+		} else {
+			newQueryContext.author = value;
+			delete newQueryContext.user;
 		}
-		setAttributes( {
+
+		setAttributes({
 			query: {
 				...attributes.query,
-				querycontext: {
-					...attributes.query.querycontext,
-					author: value,
-				}
-			}
-		} );
-	}
-	const onContextualUserChange = ( ) => {
-		if ( attributes.query.querycontext && attributes.query.querycontext.user ) {
-			delete attributes.query.querycontext.user;
+				querycontext: newQueryContext,
+			},
+		});
+	};
+	const onContextualUserChange = () => {
+		const currentQueryContext = attributes.query?.querycontext || {};
+		const newQueryContext = { ...currentQueryContext };
 
-			setAttributes( {
-				query: {
-					...attributes.query,
-					querycontext: { ...attributes.query.querycontext }
-				}
-			} );
-			return;
+		if ( newQueryContext.user ) {
+			delete newQueryContext.user;
+		} else {
+			delete newQueryContext.author;
+			newQueryContext.user = 1;
 		}
-		delete attributes.query.querycontext.author;
-		setAttributes( {
+
+		setAttributes({
 			query: {
 				...attributes.query,
-				querycontext: {
-					...attributes.query.querycontext,
-					user: 1,
-				}
-			}
-		} );
-	}
+				querycontext: newQueryContext,
+			},
+		});
+	};
+
 	const postTypeSupportsAuthor = useSelect( ( select ) =>
 		postType
 			? !! select( coreStore ).getPostType( postType )?.supports.author
@@ -90,9 +82,9 @@ export const ContextAuthorControls = ( { attributes, setAttributes, context } ) 
 			<ToggleControl
 				label={ __( 'Contextual Author', 'contextual-query-loop' ) }
 				help="Include posts by the same author as the context post."
-				checked={ ( querycontext && querycontext.author ) }
+				checked={ !!querycontext?.author }
 				onChange={ () => onContextualAuthorChange( 1 ) }
-				disabled={ ( querycontext && querycontext.user ) }
+				disabled={ !!querycontext?.user }
 			/>
 			{/* 
 				Exclude Posts Belonging to an Author
@@ -104,14 +96,14 @@ export const ContextAuthorControls = ( { attributes, setAttributes, context } ) 
 			<ToggleControl
 				label={ __( 'Exclude contextual Author', 'contextual-query-loop' ) }
 				help="Include posts by different authors as author of the context post."
-				checked={ ( querycontext && querycontext.author && -1 === querycontext.author ) }
+				checked={ querycontext?.author === -1 }
 				onChange={ () => onContextualAuthorChange( -1 ) }
-				disabled={ ( querycontext && querycontext.user ) }
+				disabled={ !!querycontext?.user }
 			/>
 			<ToggleControl
 				label={ __( 'Contextual User', 'contextual-query-loop' ) }
 				help="Include posts by the currently logged-in user."
-				checked={ ( querycontext && querycontext.user ) }
+				checked={ !!querycontext?.user }
 				onChange={ onContextualUserChange }
 			/>
 		</>
