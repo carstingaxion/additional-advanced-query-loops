@@ -1,4 +1,3 @@
-var cql;
 /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
@@ -1042,193 +1041,6 @@ CQLControls.Slot = ({
 
 /***/ },
 
-/***/ "./src/variations/controls.js"
-/*!************************************!*\
-  !*** ./src/variations/controls.js ***!
-  \************************************/
-(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/hooks */ "@wordpress/hooks");
-/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _slots_cql_controls__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../slots/cql-controls */ "./src/slots/cql-controls.js");
-/* harmony import */ var _slots_cql_controls_inherited_query__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../slots/cql-controls-inherited-query */ "./src/slots/cql-controls-inherited-query.js");
-/* harmony import */ var _components_post_order_controls__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/post-order-controls */ "./src/components/post-order-controls.js");
-/* harmony import */ var _components_context_author_controls__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/context-author-controls */ "./src/components/context-author-controls.js");
-/* harmony import */ var _components_context_date_query_controls__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../components/context-date-query-controls */ "./src/components/context-date-query-controls.js");
-/* harmony import */ var _components_context_exclude_controls__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../components/context-exclude-controls */ "./src/components/context-exclude-controls.js");
-/* harmony import */ var _components_context_tax_query_controls__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../components/context-tax-query-controls */ "./src/components/context-tax-query-controls.js");
-
-/**
- * WordPress dependencies
- */
-
-
-
-
-/**
- *  Internal dependencies
- */
-// import { CQL } from '.';
-
-
-
-
-
-
-
-
-/**
- * Custom controls
- *
- * @param {*} BlockEdit
- * @return {Element} BlockEdit instance
- */
-const withContextualQueryControls = BlockEdit => props => {
-  const {
-    attributes,
-    setAttributes
-  } = props;
-  const resetAll = () => {
-    // delete attributes.query.querycontext;
-    setAttributes({
-      query: {
-        ...attributes.query,
-        // querycontext: undefined,
-        querycontext: {} // ✅ always defined
-      }
-    });
-  };
-
-  // If the inherit prop is false, add all the controls.
-  // if ( attributes.query.inherit === false || ! attributes.query.inherit ) {
-  if (attributes.query?.inherit === false) {
-    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalToolsPanel
-    // { ...props }
-    , {
-      label: "Contextual Filters",
-      resetAll: resetAll
-      // `key` property here is used as a hack to force `ToolsPanel` to re-render
-      // See https://github.com/WordPress/gutenberg/pull/38262/files#r793422991
-      // key="true"
-      // key={
-      // 	isFirstToolsPanelItemShownByDefault
-      // 		? 'true'
-      // 		: 'false'
-      // }
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalToolsPanelItem, {
-      hasValue: () => !!attributes.query.querycontext?.exclude_current,
-      label: "ContextExclude"
-      // onDeselect={() => delete attributes.query.querycontext.exclude_current}
-      ,
-      onDeselect: () => {
-        const newQueryContext = {
-          ...attributes.query.querycontext
-        };
-        delete newQueryContext.exclude_current;
-        setAttributes({
-          query: {
-            ...attributes.query,
-            querycontext: newQueryContext
-          }
-        });
-      },
-      isShownByDefault: false
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_context_exclude_controls__WEBPACK_IMPORTED_MODULE_10__.ContextExcludeControls, {
-      ...props
-    })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalToolsPanelItem, {
-      hasValue: () => !!attributes.query.querycontext?.date_query,
-      label: "ContextDateQuery"
-      // onDeselect={() => delete attributes.query.querycontext.date_query}
-      ,
-      onDeselect: () => {
-        const newQueryContext = {
-          ...attributes.query.querycontext
-        };
-        delete newQueryContext.date_query;
-        setAttributes({
-          query: {
-            ...attributes.query,
-            querycontext: newQueryContext
-          }
-        });
-      },
-      isShownByDefault: false
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_context_date_query_controls__WEBPACK_IMPORTED_MODULE_9__.ContextDateQueryControls, {
-      ...props
-    })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalToolsPanelItem, {
-      hasValue: () => !!attributes.query.querycontext?.tax_query,
-      label: "ContextTaxQuery"
-      // onDeselect={() => delete attributes.query.querycontext.tax_query}
-      ,
-      onDeselect: () => {
-        const newQueryContext = {
-          ...attributes.query.querycontext
-        };
-        delete newQueryContext.tax_query;
-        setAttributes({
-          query: {
-            ...attributes.query,
-            querycontext: newQueryContext
-          }
-        });
-      },
-      isShownByDefault: false
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_context_tax_query_controls__WEBPACK_IMPORTED_MODULE_11__.ContextTaxQueryControls, {
-      ...props
-    })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalToolsPanelItem, {
-      hasValue: () => !!attributes.query.querycontext?.author || !!attributes.query.querycontext?.user,
-      label: "ContextAuthor"
-      // onDeselect={() =>  {
-      // delete attributes.query.querycontext.author;
-      // delete attributes.query.querycontext.user;
-      // }}
-      ,
-      onDeselect: () => {
-        const newQueryContext = {
-          ...attributes.query.querycontext
-        };
-        delete newQueryContext.author;
-        delete newQueryContext.user;
-        setAttributes({
-          query: {
-            ...attributes.query,
-            querycontext: newQueryContext
-          }
-        });
-      },
-      isShownByDefault: false
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_context_author_controls__WEBPACK_IMPORTED_MODULE_8__.ContextAuthorControls, {
-      ...props
-    })))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(BlockEdit, {
-      ...props
-    }));
-  }
-  // Add some controls if the inherit prop is true.
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(BlockEdit, {
-    ...props
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Contextual Settings', 'contextual-query-loop')
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_post_order_controls__WEBPACK_IMPORTED_MODULE_7__.PostOrderControls, {
-    ...props
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_slots_cql_controls_inherited_query__WEBPACK_IMPORTED_MODULE_6__["default"].Slot, {
-    fillProps: {
-      ...props
-    }
-  }))));
-};
-(0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_1__.addFilter)('editor.BlockEdit', 'core/query', withContextualQueryControls, 20);
-
-/***/ },
-
 /***/ "./node_modules/uuid/dist/esm-browser/native.js"
 /*!******************************************************!*\
   !*** ./node_modules/uuid/dist/esm-browser/native.js ***!
@@ -1562,68 +1374,196 @@ module.exports = window["wp"]["i18n"];
 var __webpack_exports__ = {};
 // This entry needs to be wrapped in an IIFE because it needs to be isolated against other modules in the chunk.
 (() => {
-/*!*********************************!*\
-  !*** ./src/variations/index.js ***!
-  \*********************************/
+/*!**********************!*\
+  !*** ./src/index.js ***!
+  \**********************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _controls__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./controls */ "./src/variations/controls.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/hooks */ "@wordpress/hooks");
+/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _slots_cql_controls__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./slots/cql-controls */ "./src/slots/cql-controls.js");
+/* harmony import */ var _slots_cql_controls_inherited_query__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./slots/cql-controls-inherited-query */ "./src/slots/cql-controls-inherited-query.js");
+/* harmony import */ var _components_post_order_controls__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/post-order-controls */ "./src/components/post-order-controls.js");
+/* harmony import */ var _components_context_author_controls__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/context-author-controls */ "./src/components/context-author-controls.js");
+/* harmony import */ var _components_context_date_query_controls__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/context-date-query-controls */ "./src/components/context-date-query-controls.js");
+/* harmony import */ var _components_context_exclude_controls__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/context-exclude-controls */ "./src/components/context-exclude-controls.js");
+/* harmony import */ var _components_context_tax_query_controls__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/context-tax-query-controls */ "./src/components/context-tax-query-controls.js");
+
 /**
  * WordPress dependencies
  */
-// import { registerBlockVariation, unregisterBlockVariation } from '@wordpress/blocks';
-// import { __ } from '@wordpress/i18n';
+
+
+
+
 /**
- * Internal dependencies
+ *  Internal dependencies
  */
+// import { CQL } from '.';
 
-/* 
-import CQLIcon from '../components/icons';
-import CQLControls from '../slots/cql-controls';
-import CQLControlsInheritedQuery from '../slots/cql-controls-inherited-query';
-const CQL = 'contextual-query-loop';
 
-const CqlAttributes = {
-	name: CQL,
-	title: __( 'Contextual Query Loop', 'contextual-query-loop' ),
-	description: __( 'Query loop block-variation to create custom queries based on the post- or template-context.', 'contextual-query-loop' ),
-	icon: CQLIcon,
-	// isActive: [ 'namespace' ],
-	isActive: ( blockAttributes, variationAttributes ) => {
-		if ( blockAttributes.namespace && CQL === blockAttributes.namespace ) {
 
-			if ( blockAttributes.query.querycontext && blockAttributes.query.querycontext.author ) {
-				console.log('We should (be able to) disable the default-author controll at this point, while "contextual-author" is selected.');
-				// unregisterBlockVariation( 'core/query', CQL );
 
-				// registerBlockVariation( 'core/query', {
-				// 	...CqlAttributes,
-				// 	allowedControls: [],
-				// } );
 
-			}
 
-			return true;
-		}
-		return false;
-	},
-	attributes: {
-		namespace: CQL,
-		querycontext: [],
-	},
-	scope: [ 'inserter', 'transform' ],
-    // allowedControls: [ 'inherit', 'postType', 'order', 'sticky', 'taxQuery', 'author', 'search' ],
-    allowedControls: [ 'postType', 'sticky', 'taxQuery', 'author', 'search' ],
-}
 
-registerBlockVariation( 'core/query', {
-	...CqlAttributes
-} );
 
-export { CQL, CQLControls, CQLControlsInheritedQuery }; 
-*/
+/**
+ * Custom controls
+ *
+ * @param {*} BlockEdit
+ * @return {Element} BlockEdit instance
+ */
+const withContextualQueryControls = BlockEdit => props => {
+  // console.log( 'withContextualQueryControls props', props.name );
+  // Only apply to Query Loop blocks
+  if (props.name !== 'core/query') {
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(BlockEdit, {
+      ...props
+    });
+  }
+  const {
+    attributes,
+    setAttributes
+  } = props;
+  const resetAll = () => {
+    // delete attributes.query.querycontext;
+    setAttributes({
+      query: {
+        ...attributes.query,
+        // querycontext: undefined,
+        querycontext: {} // ✅ always defined
+      }
+    });
+  };
+
+  // If the inherit prop is false, add all the controls.
+  // if ( attributes.query.inherit === false || ! attributes.query.inherit ) {
+  if (attributes.query?.inherit === false) {
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(BlockEdit, {
+      ...props
+    }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalToolsPanel
+    // { ...props }
+    , {
+      label: "Contextual Filters",
+      resetAll: resetAll
+      // `key` property here is used as a hack to force `ToolsPanel` to re-render
+      // See https://github.com/WordPress/gutenberg/pull/38262/files#r793422991
+      // key="true"
+      // key={
+      // 	isFirstToolsPanelItemShownByDefault
+      // 		? 'true'
+      // 		: 'false'
+      // }
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalToolsPanelItem, {
+      hasValue: () => !!attributes.query.querycontext?.exclude_current,
+      label: "ContextExclude"
+      // onDeselect={() => delete attributes.query.querycontext.exclude_current}
+      ,
+      onDeselect: () => {
+        const newQueryContext = {
+          ...attributes.query.querycontext
+        };
+        delete newQueryContext.exclude_current;
+        setAttributes({
+          query: {
+            ...attributes.query,
+            querycontext: newQueryContext
+          }
+        });
+      },
+      isShownByDefault: false
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_context_exclude_controls__WEBPACK_IMPORTED_MODULE_10__.ContextExcludeControls, {
+      ...props
+    })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalToolsPanelItem, {
+      hasValue: () => !!attributes.query.querycontext?.date_query,
+      label: "ContextDateQuery"
+      // onDeselect={() => delete attributes.query.querycontext.date_query}
+      ,
+      onDeselect: () => {
+        const newQueryContext = {
+          ...attributes.query.querycontext
+        };
+        delete newQueryContext.date_query;
+        setAttributes({
+          query: {
+            ...attributes.query,
+            querycontext: newQueryContext
+          }
+        });
+      },
+      isShownByDefault: false
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_context_date_query_controls__WEBPACK_IMPORTED_MODULE_9__.ContextDateQueryControls, {
+      ...props
+    })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalToolsPanelItem, {
+      hasValue: () => !!attributes.query.querycontext?.tax_query,
+      label: "ContextTaxQuery"
+      // onDeselect={() => delete attributes.query.querycontext.tax_query}
+      ,
+      onDeselect: () => {
+        const newQueryContext = {
+          ...attributes.query.querycontext
+        };
+        delete newQueryContext.tax_query;
+        setAttributes({
+          query: {
+            ...attributes.query,
+            querycontext: newQueryContext
+          }
+        });
+      },
+      isShownByDefault: false
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_context_tax_query_controls__WEBPACK_IMPORTED_MODULE_11__.ContextTaxQueryControls, {
+      ...props
+    })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalToolsPanelItem, {
+      hasValue: () => !!attributes.query.querycontext?.author || !!attributes.query.querycontext?.user,
+      label: "ContextAuthor"
+      // onDeselect={() =>  {
+      // delete attributes.query.querycontext.author;
+      // delete attributes.query.querycontext.user;
+      // }}
+      ,
+      onDeselect: () => {
+        const newQueryContext = {
+          ...attributes.query.querycontext
+        };
+        delete newQueryContext.author;
+        delete newQueryContext.user;
+        setAttributes({
+          query: {
+            ...attributes.query,
+            querycontext: newQueryContext
+          }
+        });
+      },
+      isShownByDefault: false
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_context_author_controls__WEBPACK_IMPORTED_MODULE_8__.ContextAuthorControls, {
+      ...props
+    })))));
+  }
+  // Add some controls if the inherit prop is true.
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(BlockEdit, {
+    ...props
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Contextual Settings', 'contextual-query-loop')
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_post_order_controls__WEBPACK_IMPORTED_MODULE_7__.PostOrderControls, {
+    ...props
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_slots_cql_controls_inherited_query__WEBPACK_IMPORTED_MODULE_6__["default"].Slot, {
+    fillProps: {
+      ...props
+    }
+  }))));
+};
+(0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_1__.addFilter)('editor.BlockEdit', 'core/query', withContextualQueryControls, 20);
 })();
 
-cql = __webpack_exports__;
 /******/ })()
 ;
-//# sourceMappingURL=variations.js.map
+//# sourceMappingURL=index.js.map

@@ -27,7 +27,11 @@ import { ContextTaxQueryControls } from './components/context-tax-query-controls
  * @return {Element} BlockEdit instance
  */
 const withContextualQueryControls = ( BlockEdit ) => ( props ) => {
-
+	// console.log( 'withContextualQueryControls props', props.name );
+	// Only apply to Query Loop blocks
+	if ( props.name !== 'core/query' ) {
+		return <BlockEdit { ...props } />;
+	}
 	const { attributes, setAttributes } = props;
 	const resetAll = ( ) => {
 		// delete attributes.query.querycontext;
@@ -45,6 +49,7 @@ const withContextualQueryControls = ( BlockEdit ) => ( props ) => {
 	if ( attributes.query?.inherit === false ) {
 		return (
 			<>
+				<BlockEdit { ...props } />
 				<InspectorControls>
 					<ToolsPanel
 						// { ...props }
@@ -172,7 +177,6 @@ const withContextualQueryControls = ( BlockEdit ) => ( props ) => {
 					</PanelBody>
 */}
 				</InspectorControls>
-				<BlockEdit { ...props } />
 			</>
 		);
 	}
