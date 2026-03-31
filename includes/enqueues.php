@@ -8,19 +8,19 @@
 namespace ContextualQueryLoop;
 
 /**
- * Enqueue our variations.
+ * Enqueue our index.
 */
 \add_action(
 	'enqueue_block_editor_assets',
 	function () {
 		// Variations.
-		$variations_assets_file = CQL_BUILD_DIR_PATH . 'variations.asset.php';
+		$index_assets_file = CQL_BUILD_DIR_PATH . 'index.asset.php';
 
-		if ( file_exists( $variations_assets_file ) ) {
-			$assets = include $variations_assets_file;
+		if ( file_exists( $index_assets_file ) ) {
+			$assets = include $index_assets_file;
 			\wp_enqueue_script(
 				'contextual-query-loop',
-				CQL_BUILD_DIR_URL . 'variations.js',
+				CQL_BUILD_DIR_URL . 'index.js',
 				$assets['dependencies'],
 				$assets['version'],
 				true
