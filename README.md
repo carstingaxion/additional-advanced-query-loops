@@ -21,7 +21,6 @@ Instead of manually defining query parameters, this block uses the *current cont
 - Query posts by the **same author**
 - Query posts with the **same taxonomy terms** (categories, tags, custom taxonomies)
 - Query posts by **relative or exact dates**
-- Query posts with the **same parent**
 - Works seamlessly inside **Full Site Editing (FSE)** templates
 - Extends the native Query Loop block
 
@@ -51,9 +50,6 @@ This extension allows you to query posts based on:
   - Before / after current date
   - Same day last month/year
   - Custom ranges (e.g. 1 week, 1 month, n years)
-
-### Post Hierarchy
-- Posts with the same `post_parent`
 
 ## Example Use Cases
 
