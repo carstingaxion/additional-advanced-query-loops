@@ -13,7 +13,7 @@ import { __ } from '@wordpress/i18n';
 import CQLControls from './slots/cql-controls';
 import CQLControlsInheritedQuery from './slots/cql-controls-inherited-query';
 
-import { PostOrderControls } from './components/post-order-controls';
+// import { PostOrderControls } from './components/post-order-controls';
 
 import { ContextAuthorControls } from './components/context-author-controls';
 import { ContextDateQueryControls } from './components/context-date-query-controls';
@@ -27,7 +27,6 @@ import { ContextTaxQueryControls } from './components/context-tax-query-controls
  * @return {Element} BlockEdit instance
  */
 const withContextualQueryControls = ( BlockEdit ) => ( props ) => {
-	// console.log( 'withContextualQueryControls props', props.name );
 	// Only apply to Query Loop blocks
 	if ( props.name !== 'core/query' ) {
 		return <BlockEdit { ...props } />;
@@ -38,14 +37,12 @@ const withContextualQueryControls = ( BlockEdit ) => ( props ) => {
 		setAttributes( {
 			query: {
 				...attributes.query,
-				// querycontext: undefined,
-				querycontext: {}, // ✅ always defined
+				querycontext: {}, // always defined
 			}
 		} );
 	};
 
 	// If the inherit prop is false, add all the controls.
-	// if ( attributes.query.inherit === false || ! attributes.query.inherit ) {
 	if ( attributes.query?.inherit === false ) {
 		return (
 			<>
@@ -53,7 +50,7 @@ const withContextualQueryControls = ( BlockEdit ) => ( props ) => {
 				<InspectorControls>
 					<ToolsPanel
 						// { ...props }
-						label="Contextual Filters"
+						label={ __( 'Contextual Filters', 'default' ) }
 						resetAll={ resetAll }
 						// `key` property here is used as a hack to force `ToolsPanel` to re-render
 						// See https://github.com/WordPress/gutenberg/pull/38262/files#r793422991
@@ -66,8 +63,7 @@ const withContextualQueryControls = ( BlockEdit ) => ( props ) => {
 					>
 						<ToolsPanelItem
 							hasValue={() => !!attributes.query.querycontext?.exclude_current}
-							label="ContextExclude"
-							// onDeselect={() => delete attributes.query.querycontext.exclude_current}
+							label={ __( 'Exclude current post', 'default' ) }
 							onDeselect={() => {
 								const newQueryContext = {
 									...attributes.query.querycontext,
@@ -88,8 +84,7 @@ const withContextualQueryControls = ( BlockEdit ) => ( props ) => {
 
 						<ToolsPanelItem
 							hasValue={() => !!attributes.query.querycontext?.date_query}
-							label="ContextDateQuery"
-							// onDeselect={() => delete attributes.query.querycontext.date_query}
+							label={ __( 'Dates', 'default' ) }
 							onDeselect={() => {
 								const newQueryContext = {
 									...attributes.query.querycontext,
@@ -110,8 +105,7 @@ const withContextualQueryControls = ( BlockEdit ) => ( props ) => {
 
 						<ToolsPanelItem
 							hasValue={() => !!attributes.query.querycontext?.tax_query}
-							label="ContextTaxQuery"
-							// onDeselect={() => delete attributes.query.querycontext.tax_query}
+							label={ __( 'Taxonomies', 'default' ) }
 							onDeselect={() => {
 								const newQueryContext = {
 									...attributes.query.querycontext,
@@ -132,11 +126,7 @@ const withContextualQueryControls = ( BlockEdit ) => ( props ) => {
 
 						<ToolsPanelItem
 							hasValue={() => ( !!attributes.query.querycontext?.author || !!attributes.query.querycontext?.user) }
-							label="ContextAuthor"
-							// onDeselect={() =>  {
-								// delete attributes.query.querycontext.author;
-								// delete attributes.query.querycontext.user;
-							// }}
+							label={ __( 'Authors', 'default' ) }
 							onDeselect={() => {
 								const newQueryContext = {
 									...attributes.query.querycontext,
@@ -180,25 +170,8 @@ const withContextualQueryControls = ( BlockEdit ) => ( props ) => {
 			</>
 		);
 	}
-	// Add some controls if the inherit prop is true.
-	return (
-		<>
-			<BlockEdit { ...props } />
-			<InspectorControls>
-				<PanelBody
-					title={ __(
-						'Contextual Settings',
-						'contextual-query-loop'
-					) }
-				>
-					<PostOrderControls { ...props } />
-					<CQLControlsInheritedQuery.Slot
-						fillProps={ { ...props } }
-					/>
-				</PanelBody>
-			</InspectorControls>
-		</>
-	);
+	// Add no controls if the inherit prop is true.
+	return <BlockEdit { ...props } />;
 };
 
 addFilter( 'editor.BlockEdit', 'core/query', withContextualQueryControls, 20);

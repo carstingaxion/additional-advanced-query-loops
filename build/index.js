@@ -403,7 +403,7 @@ const ContextExcludeControls = ({
       } = {}
     } = {}
   } = attributes;
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, " ", (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Exclude Posts', 'contextual-query-loop')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, " ", (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Exclude Post', 'contextual-query-loop')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Exclude Contextual Post', 'contextual-query-loop'),
     checked: !!excludeCurrent,
     onChange: () => {
@@ -813,104 +813,6 @@ const ContextTaxQueryControls = ({
       });
     }
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Add contextual tax query', 'contextual-query-loop'))));
-};
-
-/***/ },
-
-/***/ "./src/components/post-order-controls.js"
-/*!***********************************************!*\
-  !*** ./src/components/post-order-controls.js ***!
-  \***********************************************/
-(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   PostOrderControls: () => (/* binding */ PostOrderControls)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__);
-
-/**
- * WordPress dependencies
- */
-
-
-
-/**
- * PostOrderControls component
- *
- * @param {*} param0
- * @return {Element} PostCountControls
- */
-const PostOrderControls = ({
-  attributes,
-  setAttributes
-}) => {
-  const {
-    query: {
-      order,
-      orderBy
-    } = {}
-  } = attributes;
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Post Order By', 'contextual-query-loop'),
-    value: orderBy,
-    help: orderBy === 'meta_value' || orderBy === 'meta_value_num' ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Meta Value and Meta Value Num require that Meta Key is set in the Meta Query section.', 'contextual-query-loop') : '',
-    options: [{
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Author', 'contextual-query-loop'),
-      value: 'author'
-    }, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Date', 'contextual-query-loop'),
-      value: 'date'
-    }, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Last Modified Date', 'contextual-query-loop'),
-      value: 'modified'
-    }, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Title', 'contextual-query-loop'),
-      value: 'title'
-    },
-    // {
-    // 	label: __( 'Meta Value', 'contextual-query-loop' ),
-    // 	value: 'meta_value',
-    // },
-    // {
-    // 	label: __( 'Meta Value Num', 'contextual-query-loop' ),
-    // 	value: 'meta_value_num',
-    // },
-    {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Random', 'contextual-query-loop'),
-      value: 'rand'
-    }, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Menu Order', 'contextual-query-loop'),
-      value: 'menu_order'
-    }, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Post ID', 'contextual-query-loop'),
-      value: 'id'
-    }],
-    onChange: newOrderBy => {
-      setAttributes({
-        query: {
-          ...attributes.query,
-          orderBy: newOrderBy
-        }
-      });
-    }
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Ascending Order', 'contextual-query-loop'),
-    checked: order === 'asc',
-    onChange: () => {
-      setAttributes({
-        query: {
-          ...attributes.query,
-          order: order === 'asc' ? 'desc' : 'asc'
-        }
-      });
-    }
-  }));
 };
 
 /***/ },
@@ -1390,11 +1292,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _slots_cql_controls__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./slots/cql-controls */ "./src/slots/cql-controls.js");
 /* harmony import */ var _slots_cql_controls_inherited_query__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./slots/cql-controls-inherited-query */ "./src/slots/cql-controls-inherited-query.js");
-/* harmony import */ var _components_post_order_controls__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/post-order-controls */ "./src/components/post-order-controls.js");
-/* harmony import */ var _components_context_author_controls__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/context-author-controls */ "./src/components/context-author-controls.js");
-/* harmony import */ var _components_context_date_query_controls__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/context-date-query-controls */ "./src/components/context-date-query-controls.js");
-/* harmony import */ var _components_context_exclude_controls__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/context-exclude-controls */ "./src/components/context-exclude-controls.js");
-/* harmony import */ var _components_context_tax_query_controls__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/context-tax-query-controls */ "./src/components/context-tax-query-controls.js");
+/* harmony import */ var _components_context_author_controls__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/context-author-controls */ "./src/components/context-author-controls.js");
+/* harmony import */ var _components_context_date_query_controls__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/context-date-query-controls */ "./src/components/context-date-query-controls.js");
+/* harmony import */ var _components_context_exclude_controls__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/context-exclude-controls */ "./src/components/context-exclude-controls.js");
+/* harmony import */ var _components_context_tax_query_controls__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/context-tax-query-controls */ "./src/components/context-tax-query-controls.js");
 
 /**
  * WordPress dependencies
@@ -1410,6 +1311,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+// import { PostOrderControls } from './components/post-order-controls';
+
 
 
 
@@ -1422,7 +1325,6 @@ __webpack_require__.r(__webpack_exports__);
  * @return {Element} BlockEdit instance
  */
 const withContextualQueryControls = BlockEdit => props => {
-  // console.log( 'withContextualQueryControls props', props.name );
   // Only apply to Query Loop blocks
   if (props.name !== 'core/query') {
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(BlockEdit, {
@@ -1438,21 +1340,19 @@ const withContextualQueryControls = BlockEdit => props => {
     setAttributes({
       query: {
         ...attributes.query,
-        // querycontext: undefined,
-        querycontext: {} // ✅ always defined
+        querycontext: {} // always defined
       }
     });
   };
 
   // If the inherit prop is false, add all the controls.
-  // if ( attributes.query.inherit === false || ! attributes.query.inherit ) {
   if (attributes.query?.inherit === false) {
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(BlockEdit, {
       ...props
     }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalToolsPanel
     // { ...props }
     , {
-      label: "Contextual Filters",
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Contextual Filters', 'default'),
       resetAll: resetAll
       // `key` property here is used as a hack to force `ToolsPanel` to re-render
       // See https://github.com/WordPress/gutenberg/pull/38262/files#r793422991
@@ -1464,9 +1364,7 @@ const withContextualQueryControls = BlockEdit => props => {
       // }
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalToolsPanelItem, {
       hasValue: () => !!attributes.query.querycontext?.exclude_current,
-      label: "ContextExclude"
-      // onDeselect={() => delete attributes.query.querycontext.exclude_current}
-      ,
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Exclude current post', 'default'),
       onDeselect: () => {
         const newQueryContext = {
           ...attributes.query.querycontext
@@ -1480,13 +1378,11 @@ const withContextualQueryControls = BlockEdit => props => {
         });
       },
       isShownByDefault: false
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_context_exclude_controls__WEBPACK_IMPORTED_MODULE_10__.ContextExcludeControls, {
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_context_exclude_controls__WEBPACK_IMPORTED_MODULE_9__.ContextExcludeControls, {
       ...props
     })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalToolsPanelItem, {
       hasValue: () => !!attributes.query.querycontext?.date_query,
-      label: "ContextDateQuery"
-      // onDeselect={() => delete attributes.query.querycontext.date_query}
-      ,
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Dates', 'default'),
       onDeselect: () => {
         const newQueryContext = {
           ...attributes.query.querycontext
@@ -1500,13 +1396,11 @@ const withContextualQueryControls = BlockEdit => props => {
         });
       },
       isShownByDefault: false
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_context_date_query_controls__WEBPACK_IMPORTED_MODULE_9__.ContextDateQueryControls, {
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_context_date_query_controls__WEBPACK_IMPORTED_MODULE_8__.ContextDateQueryControls, {
       ...props
     })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalToolsPanelItem, {
       hasValue: () => !!attributes.query.querycontext?.tax_query,
-      label: "ContextTaxQuery"
-      // onDeselect={() => delete attributes.query.querycontext.tax_query}
-      ,
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Taxonomies', 'default'),
       onDeselect: () => {
         const newQueryContext = {
           ...attributes.query.querycontext
@@ -1520,16 +1414,11 @@ const withContextualQueryControls = BlockEdit => props => {
         });
       },
       isShownByDefault: false
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_context_tax_query_controls__WEBPACK_IMPORTED_MODULE_11__.ContextTaxQueryControls, {
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_context_tax_query_controls__WEBPACK_IMPORTED_MODULE_10__.ContextTaxQueryControls, {
       ...props
     })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalToolsPanelItem, {
       hasValue: () => !!attributes.query.querycontext?.author || !!attributes.query.querycontext?.user,
-      label: "ContextAuthor"
-      // onDeselect={() =>  {
-      // delete attributes.query.querycontext.author;
-      // delete attributes.query.querycontext.user;
-      // }}
-      ,
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Authors', 'default'),
       onDeselect: () => {
         const newQueryContext = {
           ...attributes.query.querycontext
@@ -1544,22 +1433,14 @@ const withContextualQueryControls = BlockEdit => props => {
         });
       },
       isShownByDefault: false
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_context_author_controls__WEBPACK_IMPORTED_MODULE_8__.ContextAuthorControls, {
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_context_author_controls__WEBPACK_IMPORTED_MODULE_7__.ContextAuthorControls, {
       ...props
     })))));
   }
-  // Add some controls if the inherit prop is true.
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(BlockEdit, {
+  // Add no controls if the inherit prop is true.
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(BlockEdit, {
     ...props
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Contextual Settings', 'contextual-query-loop')
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_post_order_controls__WEBPACK_IMPORTED_MODULE_7__.PostOrderControls, {
-    ...props
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_slots_cql_controls_inherited_query__WEBPACK_IMPORTED_MODULE_6__["default"].Slot, {
-    fillProps: {
-      ...props
-    }
-  }))));
+  });
 };
 (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_1__.addFilter)('editor.BlockEdit', 'core/query', withContextualQueryControls, 20);
 })();

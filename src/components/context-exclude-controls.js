@@ -18,7 +18,7 @@ export const ContextExcludeControls = ( { attributes, setAttributes } ) => {
 
 	return (
 		<>
-			<h2> { __( 'Exclude Posts', 'contextual-query-loop' ) }</h2>
+			<h2> { __( 'Exclude Post', 'contextual-query-loop' ) }</h2>
 			<ToggleControl
 				label={ __( 'Exclude Contextual Post', 'contextual-query-loop' ) }
 				checked={ !! excludeCurrent }
