@@ -455,4 +455,3 @@ function add_custom_query_params( $args, $request ) {
 		array_filter( $filtered_query_args )
 	);
 }
-

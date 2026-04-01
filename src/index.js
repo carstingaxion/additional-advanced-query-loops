@@ -3,9 +3,10 @@
  */
 import { addFilter } from '@wordpress/hooks';
 import { InspectorControls } from '@wordpress/block-editor';
-import { 
+import {
 	__experimentalToolsPanel as ToolsPanel,
-	__experimentalToolsPanelItem as ToolsPanelItem, } from '@wordpress/components';
+	__experimentalToolsPanelItem as ToolsPanelItem,
+} from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import { ContextAuthorControls } from './components/context-author-controls';
@@ -25,13 +26,13 @@ const withContextualQueryControls = ( BlockEdit ) => ( props ) => {
 		return <BlockEdit { ...props } />;
 	}
 	const { attributes, setAttributes } = props;
-	const resetAll = ( ) => {
+	const resetAll = () => {
 		// delete attributes.query.querycontext;
 		setAttributes( {
 			query: {
 				...attributes.query,
 				querycontext: {}, // always defined
-			}
+			},
 		} );
 	};
 
@@ -43,7 +44,7 @@ const withContextualQueryControls = ( BlockEdit ) => ( props ) => {
 				<InspectorControls>
 					<ToolsPanel
 						// { ...props }
-						label={ __( 'Contextual Filters', 'default' ) }
+						label={ __( 'Contextual Filters' ) }
 						resetAll={ resetAll }
 						// `key` property here is used as a hack to force `ToolsPanel` to re-render
 						// See https://github.com/WordPress/gutenberg/pull/38262/files#r793422991
@@ -55,94 +56,101 @@ const withContextualQueryControls = ( BlockEdit ) => ( props ) => {
 						// }
 					>
 						<ToolsPanelItem
-							hasValue={() => !!attributes.query.querycontext?.exclude_current}
-							label={ __( 'Exclude current post', 'default' ) }
-							onDeselect={() => {
+							hasValue={ () =>
+								!! attributes.query.querycontext
+									?.exclude_current
+							}
+							label={ __( 'Exclude current post' ) }
+							onDeselect={ () => {
 								const newQueryContext = {
 									...attributes.query.querycontext,
 								};
 								delete newQueryContext.exclude_current;
 
-								setAttributes({
+								setAttributes( {
 									query: {
 										...attributes.query,
 										querycontext: newQueryContext,
 									},
-								});
-							}}
-							isShownByDefault={false}
+								} );
+							} }
+							isShownByDefault={ false }
 						>
 							<ContextExcludeControls { ...props } />
 						</ToolsPanelItem>
 
 						<ToolsPanelItem
-							hasValue={() => !!attributes.query.querycontext?.date_query}
-							label={ __( 'Dates', 'default' ) }
-							onDeselect={() => {
+							hasValue={ () =>
+								!! attributes.query.querycontext?.date_query
+							}
+							label={ __( 'Dates' ) }
+							onDeselect={ () => {
 								const newQueryContext = {
 									...attributes.query.querycontext,
 								};
 								delete newQueryContext.date_query;
 
-								setAttributes({
+								setAttributes( {
 									query: {
 										...attributes.query,
 										querycontext: newQueryContext,
 									},
-								});
-							}}
-							isShownByDefault={false}
+								} );
+							} }
+							isShownByDefault={ false }
 						>
 							<ContextDateQueryControls { ...props } />
 						</ToolsPanelItem>
 
 						<ToolsPanelItem
-							hasValue={() => !!attributes.query.querycontext?.tax_query}
-							label={ __( 'Taxonomies', 'default' ) }
-							onDeselect={() => {
+							hasValue={ () =>
+								!! attributes.query.querycontext?.tax_query
+							}
+							label={ __( 'Taxonomies' ) }
+							onDeselect={ () => {
 								const newQueryContext = {
 									...attributes.query.querycontext,
 								};
 								delete newQueryContext.tax_query;
 
-								setAttributes({
+								setAttributes( {
 									query: {
 										...attributes.query,
 										querycontext: newQueryContext,
 									},
-								});
-							}}
-							isShownByDefault={false}
+								} );
+							} }
+							isShownByDefault={ false }
 						>
 							<ContextTaxQueryControls { ...props } />
 						</ToolsPanelItem>
 
 						<ToolsPanelItem
-							hasValue={() => ( !!attributes.query.querycontext?.author || !!attributes.query.querycontext?.user) }
-							label={ __( 'Authors', 'default' ) }
-							onDeselect={() => {
+							hasValue={ () =>
+								!! attributes.query.querycontext?.author ||
+								!! attributes.query.querycontext?.user
+							}
+							label={ __( 'Authors' ) }
+							onDeselect={ () => {
 								const newQueryContext = {
 									...attributes.query.querycontext,
 								};
 								delete newQueryContext.author;
 								delete newQueryContext.user;
 
-								setAttributes({
+								setAttributes( {
 									query: {
 										...attributes.query,
 										querycontext: newQueryContext,
 									},
-								});
-							}}
-							isShownByDefault={false}
+								} );
+							} }
+							isShownByDefault={ false }
 						>
 							<ContextAuthorControls { ...props } />
 						</ToolsPanelItem>
-
-
-
-						</ToolsPanel>
-{/* 
+					</ToolsPanel>
+					{ /* 
 					<PanelBody
 						title={ __(
 							'Contextual Settings',
@@ -158,7 +166,7 @@ const withContextualQueryControls = ( BlockEdit ) => ( props ) => {
 
 						<CQLControls.Slot fillProps={ { ...props } } />
 					</PanelBody>
-*/}
+*/ }
 				</InspectorControls>
 			</>
 		);
@@ -167,4 +175,4 @@ const withContextualQueryControls = ( BlockEdit ) => ( props ) => {
 	return <BlockEdit { ...props } />;
 };
 
-addFilter( 'editor.BlockEdit', 'core/query', withContextualQueryControls, 20);
+addFilter( 'editor.BlockEdit', 'core/query', withContextualQueryControls, 20 );
