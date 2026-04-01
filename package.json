@@ -1,31 +1,47 @@
 {
-	"name": "contextual-query-loop",
-	"version": "2.2.3",
-	"description": "",
-	"main": "index.js",
-	"scripts": {
-		"start": "wp-scripts start",
-		"build": "wp-scripts build",
-		"plugin-zip": "wp-scripts plugin-zip",
-		"format": "wp-scripts format",
-		"env": "wp-env",
-		"release": "npm run build && npm run plugin-zip"
-	},
-	"files": [
-		"build",
-		"index.php",
-		"readme.txt",
-		"includes"
-	],
-	"prettier": "@wordpress/prettier-config",
-	"keywords": [],
-	"author": "",
-	"license": "GPLv2 or later",
-	"devDependencies": {
-		"@wordpress/env": "^5.7.0",
-		"@wordpress/scripts": "^27.7.0"
-	},
-	"dependencies": {
-		"uuid": "^9.0.0"
-	}
+    "name": "contextual-query-loops",
+    "version": "0.1.0",
+    "description": "Query loop block-extension to create custom queries based on the post- or template-context.",
+    "author": "Carsten Bach",
+    "license": "GPL-3.0-or-later",
+    "keywords": [
+        "query",
+        "context",
+        "wordpress"
+    ],
+    "homepage": "https://github.com/carstingaxion/contextual-query-loops#readme",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/carstingaxion/contextual-query-loops.git"
+    },
+    "bugs": {
+        "url": "https://github.com/carstingaxion/contextual-query-loops/issues"
+    },
+    "main": "build/index.js",
+    "devDependencies": {
+        "@wordpress/scripts": "^30.15.0"
+    },
+    "scripts": {
+        "build": "wp-scripts build --webpack-copy-php",
+        "check-engines": "wp-scripts check-engines",
+        "check-licenses": "wp-scripts check-licenses",
+        "format": "wp-scripts format",
+        "i18n:pot": " wp i18n make-pot . --exclude=node_modules,vendor",
+        "i18n:json": "wp i18n make-json languages --no-purge",
+        "i18n:php": "wp i18n make-php languages",
+        "lint:css": "wp-scripts lint-style",
+        "lint:css:fix": "wp-scripts lint-style --fix",
+        "lint:js": "wp-scripts lint-js",
+        "lint:js:fix": "wp-scripts lint-js --fix",
+        "lint:md:docs": "wp-scripts lint-md-docs",
+        "lint:md:docs:fix": "wp-scripts lint-md-docs --fix",
+        "lint:md:js": "wp-scripts lint-md-js",
+        "lint:php": "vendor/bin/phpcs --standard=.phpcs.xml --extensions=php --colors -s -p -v .",
+        "lint:php:fix": "vendor/bin/phpcbf --standard=.phpcs.xml -p -v .",
+        "lint:phpstan": "vendor/bin/phpstan analyze -vv --memory-limit=2G",
+        "lint:pkg-json": "wp-scripts lint-pkg-json",
+        "packages-update": "wp-scripts packages-update",
+        "plugin-zip": "wp-scripts plugin-zip",
+        "start": "wp-scripts start --blocks-manifest"
+    }
 }

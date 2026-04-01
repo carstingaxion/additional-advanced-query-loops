@@ -86,6 +86,10 @@ The plugin supports combinations like:
 Contributions, ideas, and feedback are welcome!  
 Feel free to open issues or submit pull requests.
 
+## Changelog
+
+All notable changes to this project will be documented in the [CHANGELOG.md](CHANGELOG.md).
+
 ## License
 
-GPL-2.0-or-later
+GPL-3.0-or-later
