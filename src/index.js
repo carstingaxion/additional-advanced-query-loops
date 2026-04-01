@@ -3,17 +3,10 @@
  */
 import { addFilter } from '@wordpress/hooks';
 import { InspectorControls } from '@wordpress/block-editor';
-import { PanelBody,	__experimentalToolsPanel as ToolsPanel,
+import { 
+	__experimentalToolsPanel as ToolsPanel,
 	__experimentalToolsPanelItem as ToolsPanelItem, } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-/**
- *  Internal dependencies
- */
-// import { CQL } from '.';
-import CQLControls from './slots/cql-controls';
-import CQLControlsInheritedQuery from './slots/cql-controls-inherited-query';
-
-// import { PostOrderControls } from './components/post-order-controls';
 
 import { ContextAuthorControls } from './components/context-author-controls';
 import { ContextDateQueryControls } from './components/context-date-query-controls';

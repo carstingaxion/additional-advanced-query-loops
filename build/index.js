@@ -867,82 +867,6 @@ const useTaxonomies = postType => {
 
 /***/ },
 
-/***/ "./src/slots/cql-controls-inherited-query.js"
-/*!***************************************************!*\
-  !*** ./src/slots/cql-controls-inherited-query.js ***!
-  \***************************************************/
-(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
-
-/**
- * WordPress dependencies
- */
-
-
-/**
- * Create our Slot and Fill components
- */
-const {
-  Fill,
-  Slot
-} = (0,_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.createSlotFill)('CQLControlsInheritedQuery');
-const CQLControlsInheritedQuery = ({
-  children
-}) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(Fill, null, children);
-CQLControlsInheritedQuery.Slot = Slot;
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CQLControlsInheritedQuery);
-
-/***/ },
-
-/***/ "./src/slots/cql-controls.js"
-/*!***********************************!*\
-  !*** ./src/slots/cql-controls.js ***!
-  \***********************************/
-(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
-
-/**
- * WordPress dependencies
- */
-
-
-/**
- * Create our Slot and Fill components
- */
-const {
-  Fill,
-  Slot
-} = (0,_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.createSlotFill)('CQLControls');
-const CQLControls = ({
-  children
-}) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(Fill, null, children);
-CQLControls.Slot = ({
-  fillProps
-}) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(Slot, {
-  fillProps: fillProps
-}, fills => {
-  return fills.length ? fills : null;
-});
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CQLControls);
-
-/***/ },
-
 /***/ "./node_modules/uuid/dist/esm-browser/native.js"
 /*!******************************************************!*\
   !*** ./node_modules/uuid/dist/esm-browser/native.js ***!
@@ -1290,12 +1214,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _slots_cql_controls__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./slots/cql-controls */ "./src/slots/cql-controls.js");
-/* harmony import */ var _slots_cql_controls_inherited_query__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./slots/cql-controls-inherited-query */ "./src/slots/cql-controls-inherited-query.js");
-/* harmony import */ var _components_context_author_controls__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/context-author-controls */ "./src/components/context-author-controls.js");
-/* harmony import */ var _components_context_date_query_controls__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/context-date-query-controls */ "./src/components/context-date-query-controls.js");
-/* harmony import */ var _components_context_exclude_controls__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/context-exclude-controls */ "./src/components/context-exclude-controls.js");
-/* harmony import */ var _components_context_tax_query_controls__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/context-tax-query-controls */ "./src/components/context-tax-query-controls.js");
+/* harmony import */ var _components_context_author_controls__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/context-author-controls */ "./src/components/context-author-controls.js");
+/* harmony import */ var _components_context_date_query_controls__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/context-date-query-controls */ "./src/components/context-date-query-controls.js");
+/* harmony import */ var _components_context_exclude_controls__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/context-exclude-controls */ "./src/components/context-exclude-controls.js");
+/* harmony import */ var _components_context_tax_query_controls__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/context-tax-query-controls */ "./src/components/context-tax-query-controls.js");
 
 /**
  * WordPress dependencies
@@ -1303,15 +1225,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-/**
- *  Internal dependencies
- */
-// import { CQL } from '.';
-
-
-
-// import { PostOrderControls } from './components/post-order-controls';
 
 
 
@@ -1378,7 +1291,7 @@ const withContextualQueryControls = BlockEdit => props => {
         });
       },
       isShownByDefault: false
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_context_exclude_controls__WEBPACK_IMPORTED_MODULE_9__.ContextExcludeControls, {
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_context_exclude_controls__WEBPACK_IMPORTED_MODULE_7__.ContextExcludeControls, {
       ...props
     })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalToolsPanelItem, {
       hasValue: () => !!attributes.query.querycontext?.date_query,
@@ -1396,7 +1309,7 @@ const withContextualQueryControls = BlockEdit => props => {
         });
       },
       isShownByDefault: false
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_context_date_query_controls__WEBPACK_IMPORTED_MODULE_8__.ContextDateQueryControls, {
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_context_date_query_controls__WEBPACK_IMPORTED_MODULE_6__.ContextDateQueryControls, {
       ...props
     })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalToolsPanelItem, {
       hasValue: () => !!attributes.query.querycontext?.tax_query,
@@ -1414,7 +1327,7 @@ const withContextualQueryControls = BlockEdit => props => {
         });
       },
       isShownByDefault: false
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_context_tax_query_controls__WEBPACK_IMPORTED_MODULE_10__.ContextTaxQueryControls, {
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_context_tax_query_controls__WEBPACK_IMPORTED_MODULE_8__.ContextTaxQueryControls, {
       ...props
     })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalToolsPanelItem, {
       hasValue: () => !!attributes.query.querycontext?.author || !!attributes.query.querycontext?.user,
@@ -1433,7 +1346,7 @@ const withContextualQueryControls = BlockEdit => props => {
         });
       },
       isShownByDefault: false
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_context_author_controls__WEBPACK_IMPORTED_MODULE_7__.ContextAuthorControls, {
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_context_author_controls__WEBPACK_IMPORTED_MODULE_5__.ContextAuthorControls, {
       ...props
     })))));
   }

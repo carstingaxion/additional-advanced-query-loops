@@ -181,53 +181,6 @@ function parse_date_query( array $date_query, \WP_Post $queried_object ): array 
 	return array(); // stupid fallback ...
 }
 
-
-/**
- * Adds the custom query attributes to the Query Loop block.
- *
- * @param array $meta_query_data Post meta query data.
- * @return array
-
-function parse_meta_query( $meta_query_data ) {
-	$meta_queries = array();
-	if ( isset( $meta_query_data ) ) {
-		$meta_queries = array(
-			'relation' => isset( $meta_query_data['relation'] ) ? $meta_query_data['relation'] : '',
-		);
-
-		if ( isset( $meta_query_data['queries'] ) ) {
-			foreach ( $meta_query_data['queries'] as $query ) {
-				$meta_queries[] = array_filter(
-					array(
-						'key'     => $query['meta_key'] ?? '',
-						'value'   => $query['meta_value'],
-						'compare' => $query['meta_compare'],
-					)
-				);
-			}
-		}
-	}
-
-	return array_filter( $meta_queries );
-} */
-
-/**
- * Returns an array with Post IDs that should be excluded from the Query.
- *
- * @param array
- * @return array
- */
-function get_exclude_ids( $attributes ) {
-	$exclude_ids = array();
-
-	// Exclude Current Post.
-	if ( isset( $attributes['exclude_current'] ) && boolval( $attributes['exclude_current'] ) ) {
-		array_push( $exclude_ids, $attributes['exclude_current'] );
-	}
-
-	return $exclude_ids;
-}
-
 /**
  * Returns an array with Post IDs to be included on the Query
  *
@@ -290,76 +243,11 @@ function get_include_ids( $include_posts ) {
 						// Generate a new custom query will all potential query vars.
 						$query_args = array();
 
-						// Post Related.
-						if ( isset( $block_query['multiple_posts'] ) && ! empty( $block_query['multiple_posts'] ) ) {
-							$query_args['post_type'] = array_merge( array( $default_query['post_type'] ), $block_query['multiple_posts'] );
-						}
-
-						// // Exclude Posts.
-						// $exclude_ids = get_exclude_ids( $block_query );
-						// if ( ! empty( $exclude_ids ) ) {
-						// $query_args['post__not_in'] = $exclude_ids;
-						// }
-
 						// Include Posts.
 						if ( isset( $block_query['include_posts'] ) && ! empty( $block_query['include_posts'] ) ) {
 							$include_ids            = get_include_ids( $block_query['include_posts'] );
 							$query_args['post__in'] = $include_ids;
 						}
-
-						// // Check for meta queries.
-						// // Ensure any old meta is removed @see https://github.com/ryanwelcher/contextual-query-loop/issues/29
-						// $query_args['meta_query'] = array();
-						// if ( isset( $block_query['meta_query'] ) && ! empty( $block_query['meta_query'] ) ) {
-						// $query_args['meta_query'] = parse_meta_query( $block_query['meta_query'] ); // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
-						// }
-
-						// // Date queries.
-						// $date_query        = $block_query['date_query'] ?? null;
-						// $date_relationship = $date_query['relation'] ?? null;
-						// $date_primary      = $date_query['date_primary'] ?? null;
-						// if ( $date_query && $date_relationship && $date_primary ) {
-						// $date_is_inclusive = $date_query['inclusive'] ?? false;
-						// $date_secondary    = $date_query['date_secondary'] ?? null;
-
-						// Date format: 2022-12-27T11:14:21.
-						// $primary_year  = substr( $date_primary, 0, 4 );
-						// $primary_month = substr( $date_primary, 5, 2 );
-						// $primary_day   = substr( $date_primary, 8, 2 );
-
-						// if ( 'between' === $date_relationship && $date_secondary ) {
-						// $secondary_year  = substr( $date_secondary, 0, 4 );
-						// $secondary_month = substr( $date_secondary, 5, 2 );
-						// $secondary_day   = substr( $date_secondary, 8, 2 );
-
-						// $date_queries = array(
-						// 'after'  => array(
-						// 'year'  => $primary_year,
-						// 'month' => $primary_month,
-						// 'day'   => $primary_day,
-						// ),
-						// 'before' => array(
-						// 'year'  => $secondary_year,
-						// 'month' => $secondary_month,
-						// 'day'   => $secondary_day,
-						// ),
-						// );
-						// } else {
-						// $date_queries = array(
-						// $date_relationship => array(
-						// 'year'  => $primary_year,
-						// 'month' => $primary_month,
-						// 'day'   => $primary_day,
-						// ),
-						// );
-						// }
-
-						// $date_queries['inclusive'] = $date_is_inclusive;
-
-						// Add the date queries to the custom query.
-						// $query_args['date_query'] = array_filter( $date_queries );
-
-						// }
 
 						// Contextual inheritance.
 						if ( isset( $block_query['querycontext'] ) && ! empty( $block_query['querycontext'] ) ) {
@@ -389,7 +277,6 @@ function get_include_ids( $include_posts ) {
 											$query_args['author'] = $current_user_id;
 										}
 									}
-									// error_log( 'WP_Query:   ' . var_export( $query_args, true ) );
 
 									if ( isset( $block_query['querycontext']['tax_query'] ) && ! empty( $block_query['querycontext']['tax_query'] ) ) {
 										unset( $block_query['tax_query'] );
@@ -453,8 +340,8 @@ function get_include_ids( $include_posts ) {
 		foreach ( $registered_post_types as $registered_post_type ) {
 			\add_filter( 'rest_' . $registered_post_type . '_query', __NAMESPACE__ . '\add_custom_query_params', 10, 2 );
 
-			// We need more sortBy options.
-			\add_filter( 'rest_' . $registered_post_type . '_collection_params', __NAMESPACE__ . '\add_more_sort_by', 10, 2 );
+			// // We need more sortBy options.
+			// \add_filter( 'rest_' . $registered_post_type . '_collection_params', __NAMESPACE__ . '\add_more_sort_by', 10, 2 );
 		}
 	},
 	PHP_INT_MAX
@@ -470,14 +357,12 @@ function get_include_ids( $include_posts ) {
  * @param array $post_type    The post type.
  *
  * @return array
- */
+
 function add_more_sort_by( $query_params, $post_type ) {
 	$query_params['orderby']['enum'][] = 'menu_order';
-	// $query_params['orderby']['enum'][] = 'meta_value';
-	// $query_params['orderby']['enum'][] = 'meta_value_num';
 	$query_params['orderby']['enum'][] = 'rand';
 	return $query_params;
-}
+} */
 
 /**
  * Callback to handle the custom query params. Updates the block editor.
@@ -489,79 +374,12 @@ function add_custom_query_params( $args, $request ) {
 	// Generate a new custom query will all potential query vars.
 	$custom_args = array();
 
-	// Post Related.
-	$multiple_post_types = $request->get_param( 'multiple_posts' );
-	if ( $multiple_post_types ) {
-		$custom_args['post_type'] = array_merge( array( $args['post_type'] ), $multiple_post_types );
-	}
-
-	// // Exclusion Related.
-	// $exclude_current = $request->get_param( 'exclude_current' );
-	// if ( $exclude_current ) {
-	// $attributes = array(
-	// 'exclude_current' => $exclude_current,
-	// );
-
-	// $custom_args['post__not_in'] = get_exclude_ids( $attributes );
-	// }
-
 	// Inclusion Related.
 	$include_posts = $request->get_param( 'include_posts' );
 	if ( $include_posts ) {
 		$include_ids             = get_include_ids( $include_posts );
 		$custom_args['post__in'] = $include_ids;
 	}
-
-	// // Meta related.
-	// $meta_query = $request->get_param( 'meta_query' );
-	// if ( $meta_query ) {
-	// $custom_args['meta_query'] = parse_meta_query( $meta_query ); // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
-	// }
-
-	// // Date related.
-	// $date_query        = $request->get_param( 'date_query' );
-	// $date_relationship = $date_query['relation'] ?? null;
-	// $date_primary      = $date_query['date_primary'] ?? null;
-
-	// if ( $date_query && $date_relationship && $date_primary ) {
-	// $date_is_inclusive = 'true' === $date_query['inclusive'] ?? false;
-	// $date_secondary    = $date_query['date_secondary'] ?? null;
-
-	// Date format: 2022-12-27T11:14:21.
-	// $primary_year  = substr( $date_primary, 0, 4 );
-	// $primary_month = substr( $date_primary, 5, 2 );
-	// $primary_day   = substr( $date_primary, 8, 2 );
-
-	// if ( 'between' === $date_relationship && $date_secondary ) {
-	// $secondary_year  = substr( $date_secondary, 0, 4 );
-	// $secondary_month = substr( $date_secondary, 5, 2 );
-	// $secondary_day   = substr( $date_secondary, 8, 2 );
-
-	// $date_queries = array(
-	// 'after'  => array(
-	// 'year'  => $primary_year,
-	// 'month' => $primary_month,
-	// 'day'   => $primary_day,
-	// ),
-	// 'before' => array(
-	// 'year'  => $secondary_year,
-	// 'month' => $secondary_month,
-	// 'day'   => $secondary_day,
-	// ),
-	// );
-	// } else {
-	// $date_queries = array(
-	// $date_relationship => array(
-	// 'year'  => $primary_year,
-	// 'month' => $primary_month,
-	// 'day'   => $primary_day,
-	// ),
-	// );
-	// }
-	// $date_queries['inclusive'] = $date_is_inclusive;
-
-	// $custom_args['date_query'] = array_filter( $date_queries );
-	// }
 
 	// Contextual inheritance.
 	$querycontext = $request->get_param( 'querycontext' );
@@ -594,8 +412,6 @@ function add_custom_query_params( $args, $request ) {
 						// Add the date queries to the custom query.
 						$custom_args['date_query'] = array_filter( $date_queries );
 					}
-					// error_log( 'BEFORE:   ' . var_export( $querycontext['date_query'], true ) );
-					// error_log( 'AFTER:   ' . var_export( $custom_args['date_query'], true ) );
 				}
 
 				// Querying posts by the same author as the context post.
@@ -619,9 +435,7 @@ function add_custom_query_params( $args, $request ) {
 				// Tax related.
 				// https://developer.wordpress.org/reference/classes/wp_query/#taxonomy-parameters
 				if ( isset( $querycontext['tax_query'] ) ) {
-					// error_log( var_export( $querycontext['tax_query'], true ) );
 					$custom_args['tax_query'] = parse_tax_query( $querycontext['tax_query'], $post );
-					// error_log( var_export( $custom_args['tax_query'], true ) );
 				}
 			}
 		}
@@ -642,33 +456,3 @@ function add_custom_query_params( $args, $request ) {
 	);
 }
 
-/**
- * DEBUG OUTPUT
- *
- * Filters the content of a single block.
- *
- * @since 5.0.0
- * @since 5.9.0 The `$instance` parameter was added.
- *
- * @param string   $block_content The block content.
- * @param array    $block         The full block, including name and attributes.
- *                                These keys are explained and referenced in [WP_Block](https://developer.wordpress.org/reference/classes/wp_block/)
- *                 $block is array with keys:
- *
- *                     blockName
- *                     attrs – array of block attributes
- *                     innerBlocks – array of inner blocks
- *                     innerHTML – resultant HTML from inside block comment delimiters after removing inner blocks.
- *                     innerContent – list of string fragments and null markers where inner blocks were found
- *
- * @param \WP_Block $instance      The block instance.
- */
-add_filter(
-	'render_block_core/query',
-	function ( string $block_content, array $block, \WP_Block $instance ) {
-		// $block_content = '<pre>' . var_export( $block['attrs'], true ) . '</pre>' . $block_content;
-		return $block_content;
-	},
-	16,
-	3
-);
