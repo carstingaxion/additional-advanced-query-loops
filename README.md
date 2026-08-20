@@ -1,5 +1,7 @@
-# Contextual Query Loop
+# Contextual Query Loops
 
+
+[![Playground Demo Link](https://img.shields.io/badge/WordPress_Playground-blue?logo=wordpress&logoColor=%23fff&labelColor=%233858e9&color=%233858e9)](https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/carstingaxion/contextual-query-loops/main/.wordpress-org/blueprints/blueprint.json) [![Build, test & measure](https://github.com/carstingaxion/contextual-query-loops/actions/workflows/build-test-measure.yml/badge.svg?branch=main)](https://github.com/carstingaxion/contextual-query-loops/actions/workflows/build-test-measure.yml)
 
 Query loop block-extension to create custom queries based on the post- or template-context. Works with every `core/query` or any of its variations.
 
@@ -86,6 +88,10 @@ The plugin supports combinations like:
 Contributions, ideas, and feedback are welcome!  
 Feel free to open issues or submit pull requests.
 
+## Changelog
+
+All notable changes to this project will be documented in the [CHANGELOG.md](CHANGELOG.md).
+
 ## License
 
-GPL-2.0-or-later
+GPL-3.0-or-later

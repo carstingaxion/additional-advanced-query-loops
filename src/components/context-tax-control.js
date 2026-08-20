@@ -11,21 +11,15 @@ import { __ } from '@wordpress/i18n';
 
 /**
  * Allowed 'operator's for a (php) taxonomy Query.
- * 
+ *
  * operator (string) – Operator to test.
  * Possible values are ‘IN’, ‘NOT IN’, ‘AND’, ‘EXISTS’ and ‘NOT EXISTS’.
- * 
+ *
  * Default value is ‘IN’.
- * 
+ *
  * @see https://developer.wordpress.org/reference/classes/wp_query/#taxonomy-parameters
  */
-const compareTaxOptions = [
-	'IN',
-	'NOT IN',
-	'AND',
-	'EXISTS',
-	'NOT EXISTS',
-];
+const compareTaxOptions = [ 'IN', 'NOT IN', 'AND', 'EXISTS', 'NOT EXISTS' ];
 
 export const ContextTaxControl = ( {
 	registeredTaxKeys,
@@ -43,7 +37,7 @@ export const ContextTaxControl = ( {
 	 * @param {*} queryId
 	 * @param {*} item
 	 * @param {*} value
-	 * @returns
+	 * @return
 	 */
 	const updateQueryParam = ( queries, queryId, item, value ) => {
 		return queries.map( ( query ) => {
@@ -59,10 +53,12 @@ export const ContextTaxControl = ( {
 
 	// Get taxonomy slug by human-readable name of the taxonomy.
 	const getSlugByName = ( newTaxName ) => {
-		return Object.keys(registeredTaxKeys).find(key => registeredTaxKeys[key] === newTaxName);
+		return Object.keys( registeredTaxKeys ).find(
+			( key ) => registeredTaxKeys[ key ] === newTaxName
+		);
 	};
 	// Get list of human-readable names of all taxonomies.
-	const registeredTaxNames= Object.values( registeredTaxKeys );
+	const registeredTaxNames = Object.values( registeredTaxKeys );
 
 	return (
 		<>
@@ -83,14 +79,15 @@ export const ContextTaxControl = ( {
 					suggestions={ registeredTaxNames }
 					maxLength={ 1 }
 					onChange={ ( newTax ) => {
-						var tax_slug = getSlugByName( newTax[ 0 ] );
+						const tax_slug = getSlugByName( newTax[ 0 ] );
 						setAttributes( {
 							query: {
 								...attributes.query,
 								querycontext: {
 									...attributes.query.querycontext,
 									tax_query: {
-										...attributes.query.querycontext.tax_query,
+										...attributes.query.querycontext
+											.tax_query,
 										queries: updateQueryParam(
 											queries,
 											id,
@@ -98,11 +95,10 @@ export const ContextTaxControl = ( {
 											tax_slug
 										),
 									},
-								}
+								},
 							},
-						} )
-					}
-					}
+						} );
+					} }
 				/>
 			</BaseControl>
 
@@ -129,7 +125,7 @@ export const ContextTaxControl = ( {
 										newCompare
 									),
 								},
-							}
+							},
 						},
 					} );
 				} }
@@ -151,10 +147,9 @@ export const ContextTaxControl = ( {
 									...attributes.query.querycontext.tax_query,
 									queries: updatedQueries,
 								},
-							}
+							},
 						},
 					} );
-
 				} }
 			>
 				{ __( 'Remove contextual tax query', 'contextual-query-loop' ) }
