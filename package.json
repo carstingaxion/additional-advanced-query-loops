@@ -43,5 +43,8 @@
         "packages-update": "wp-scripts packages-update",
         "plugin-zip": "wp-scripts plugin-zip",
         "start": "wp-scripts start --blocks-manifest"
+    },
+    "dependencies": {
+        "uuid": "^13.0.0"
     }
 }
