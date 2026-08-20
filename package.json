@@ -19,7 +19,7 @@
     },
     "main": "build/index.js",
     "dependencies": {
-        "uuid": "^13.0.0"
+        "uuid": "^14.0.1"
     },
     "devDependencies": {
         "@wordpress/scripts": "^30.15.0"
