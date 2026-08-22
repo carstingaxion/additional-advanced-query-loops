@@ -22,7 +22,7 @@
         "uuid": "^13.0.0"
     },
     "devDependencies": {
-        "@wordpress/scripts": "^30.15.0"
+        "@wordpress/scripts": "^34.1.0"
     },
     "scripts": {
         "build": "wp-scripts build --webpack-copy-php",
